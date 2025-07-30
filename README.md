@@ -7,6 +7,6 @@ This is just a simple template top get started with SDL3 projects.
 This has been tested with makefiles- other build systems may need extra modifications
 and steps:
 
-- clone and Cd into repo
+- clone and Cd into repo \n
 `git clone https://github.com/Ethan-Heimer/SDL3Template && cd SDL3Template`
 
