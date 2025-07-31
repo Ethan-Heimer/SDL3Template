@@ -7,7 +7,7 @@ This is just a simple template top get started with SDL3 projects.
 This has been tested with makefiles- other build systems may need extra modifications
 
 ### Bash Script
-the following is a bash script that you can download. 
+The following is a bash script that you can download, it'll act as a project manager and allow you to easly configure new projects. 
 Copy and paste the following code into a bash script thats in the root directory of where your SDL3 projects will live. 
 It can be named whatever make sence to you, but it must have .sh at the end. 
 
@@ -83,10 +83,25 @@ fi
 
 exit 0
 ```
-After the script is created run the following command to make it executable:
-`chmod +x YOU_SCRIPT_HERE`\
+After the script is created run the following command to make it executable:\
+`chmod +x YOU_SCRIPT_HERE`
 
-The script should work now!
+The script should work now! You can run the script with `./YOUR_SCRIPT_NAME`
+
+### Bash Script Flags
+
+The above script has the following flags:
+
+- `-n NEW_PROJECT_DIR_NAME`: clones the template from this git hub; renames the cloned directory to `NEW_PROJECT_DIR_NAME`
+- `-p NEW_PROJECT_EXECUTABLE_NAME`: sets the executable name. If not set the directory name will be used 
+- `-r PROJECT_NAME`: deletes `PROJECT_NAME`
+- `-b`: will automatically build the new project after it has been cloned
+- `-g`: Will automatically initilize a new git repo after the template has been installed 
+
+The following command will install and build a new project, as well as initialize git:
+```
+./YOUR_SCRIPT_NAME -n "New Project" -p "App" -b -g
+```
 
 ### Manual Way
 
