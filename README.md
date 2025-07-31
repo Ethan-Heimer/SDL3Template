@@ -7,8 +7,9 @@ This is just a simple template top get started with SDL3 projects.
 This has been tested with makefiles- other build systems may need extra modifications
 
 ### Bash Script
-the following is a bash script that you can download. copy and paste it into the directory where you plan on keeping 
-your SDL3 projects.
+the following is a bash script that you can download. 
+Copy and paste the following code into a bash script thats in the root directory of where your SDL3 projects will live. 
+It can be named whatever make sence to you, but it must have .sh at the end. 
 
 ```
 #!/bin/bash
@@ -82,7 +83,14 @@ fi
 
 exit 0
 ```
+After the script is created run the following command to make it executable:
+`chmod +x YOU_SCRIPT_HERE`\
 
+The script should work now!
+
+### Manual Way
+
+If Bash isn't your style, you can do it this way:
 
 - clone and cd into repo\
 `git clone https://github.com/Ethan-Heimer/SDL3Template && cd SDL3Template`
