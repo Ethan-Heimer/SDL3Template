@@ -125,18 +125,27 @@ this will create a `bin` directory inside of `build` where the compiled template
 and a copy of the assets folder from `src/project/assets` will be placed. 
 
 ## Building a project
-
 There are 2 ways a project can be built with this configuration.
 
 - `./Build.sh`
 - The manual way
 
+### Build.sh
+
 `./Build.sh` is a bash script that will automatically configure directories to be linked within the project. run it like a normal bash command. 
 the output by default will be built in `./build/bin/`.
 
-The manual way is outlined below
+Because bash scripts are used to automatically used to generate alot of CMake, the CMakeLists.txt file is not complete, and will not build the project properly.
+If you need a fully built `CMakeLists.txt` file, run the followinf bash scripts:
 
-## Configuration
+- `./.bash/appendDirsToCMakeLists.sh`
+- `./.bash/generateDirCMakeFiles.sh`
+
+You can find these bash scripts in `./.bash`.
+
+The manual way is outlined below:
+
+### Manual Config
 ### Changing the project name 
 
 The Default name for the template project is `SDL3CMake`. This name can be changed by 
