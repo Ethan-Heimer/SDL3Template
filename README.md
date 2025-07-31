@@ -73,8 +73,6 @@ add_subdirectory("${CMAKE_SOURCE_DIR}/${PROJECT_DIR}/{DIRECTORY PATH}")
 
 where `{DIRECTIRY PATH}` should be chnaged to the path of the directory your looking to link
 
-An example on how to do this in included in the template already.
-
 ### The .gitignore
 
 By default the git ingore will ingore the `build` directory and the `src/external` directory.

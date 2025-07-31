@@ -2,12 +2,7 @@
 #include <SDL3_image/SDL_image.h>
 #include <SDL3/SDL_surface.h>
 
-#include "example/hello.h"
-
 int main(int argc, char* argv[]){
-    Hello hello{};
-    hello.SayHello();
-
     SDL_Window* window;
     SDL_Renderer* renderer;
     SDL_Texture* texture;
