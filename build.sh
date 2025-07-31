@@ -1,17 +1,19 @@
 #! /bin/bash
 
-#create temp files for CMakeLists
+#clean up bin dir
+echo "Cleaning Bin..."
+cd build
+make clean
 
+#create temp files for CMakeLists
 echo "Creating Temp Files"
 cp CMakeLists.txt .CMakeLists.temp
 
 #append directories
-
 echo "Appending directories to CMake file..."
 ./.bash/appendDirsToCMakeLists.sh
 
 #generate dir CMakeFiles
-
 echo "Generating CMakeLists.txt files in directories..."
 ./.bash/generateDirCMakeFiles.sh App
 
