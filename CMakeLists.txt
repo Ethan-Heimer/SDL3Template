@@ -33,7 +33,9 @@ target_sources(SDL3CMake PRIVATE
     ${PROJECT_DIR}/main.cpp
 )
 
-add_subdirectory("${CMAKE_SOURCE_DIR}/${PROJECT_DIR}/example")
+#Example on how to add new directory to the project
+#Every directory will need a CMakeLists.txt file with a target_sources in side like the block above
+#add_subdirectory("${CMAKE_SOURCE_DIR}/${PROJECT_DIR}/example")
 
 message("Linking SDL Libs")
 
