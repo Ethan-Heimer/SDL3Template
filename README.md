@@ -28,7 +28,7 @@ and a copy of the assets folder from `src/project/assets` will be placed.
 ### Changing the project name 
 
 The Default name for the template project is `SDL3CMake`. This name can be changed by 
-changing the every occurance of `SDL3CMake` to the desired name. Every CMakeLists.txt file will need this named changed to work properly\
+changing the every occurance of `SDL3CMake` to the desired name. Every CMakeLists.txt file will need this named changed to work properly
 
 (I have not found a better way to do this yet)
 
@@ -50,3 +50,32 @@ and append the lib name to `FetchContent_MakeAvailable`.\
 finaly the lib should have a cmake target name associated with it. use the target name too 
 add the lib to the compiled application with\
 `target_link_libraries({PROJECT NAME} PRIVATE {LIB TARGET NAME})`
+
+### Adding a new directory in scr/project/
+
+Unfortunatly, adding a new directory that the project will have to link is not done without some extra configuration.
+Every directory that the project must link to must have its own 'CMakeLists.txt' file as well. These files will contain somthing like the followign:
+```
+target_sources({PROJECT NAME} PRIVATE 
+    {SOURCE FILE}.h
+    {SOURCE FILE}.cpp
+    ...
+)
+```
+
+Every source file in the directory must be added into the `target_sources` block.
+
+In the root `CMakeLists.txt` file add this line:
+
+```
+add_subdirectory("${CMAKE_SOURCE_DIR}/${PROJECT_DIR}/{DIRECTORY PATH}")
+```
+
+where `{DIRECTIRY PATH}` should be chnaged to the path of the directory your looking to link
+
+An example on how to do this in included in the template already.
+
+### The .gitignore
+
+By default the git ingore will ingore the `build` directory and the `src/external` directory.
+
