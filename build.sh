@@ -4,6 +4,7 @@
 echo "Cleaning Bin..."
 cd build
 make clean
+cd ..
 
 #create temp files for CMakeLists
 echo "Creating Temp Files"
