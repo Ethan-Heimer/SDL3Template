@@ -1,5 +1,5 @@
 #! /bin/bash
-AppName=$(car ./.var/name.data)
+AppName=$(cat ./.var/name.data)
 MatchFiles="\\.(h|cpp|c)$"
 
 shopt -s globstar
