@@ -136,7 +136,7 @@ There are 2 ways a project can be built with this configuration.
 the output by default will be built in `./build/bin/`.
 
 Because bash scripts are used to automatically used to generate alot of CMake, the CMakeLists.txt file is not complete, and will not build the project properly.
-If you need a fully built `CMakeLists.txt` file, run the followinf bash scripts:
+If you need a fully built `CMakeLists.txt` file, run the following bash scripts:
 
 - `./.bash/appendDirsToCMakeLists.sh`
 - `./.bash/generateDirCMakeFiles.sh`
