@@ -6,36 +6,39 @@ This is just a simple template top get started with SDL3 projects.
 
 This has been tested with makefiles- other build systems may need extra modifications
 
-### Bash Script
-The following is a bash script that you can download, it'll act as a project manager and allow you to easly configure new projects. 
+The following is a bash script that you can use to create a new template project, it'll act as a project manager and allow you to easly configure new projects. 
 Copy and paste the following code into a bash script thats in the root directory of where your SDL3 projects will live. 
 It can be named whatever make sence to you, but it must have .sh at the end. 
 
 ```
 #!/bin/bash
 
-dirname="New Project"
 removename=""
 projectname=$dirname
+newname=""
 
 dobuild=0
-dogitinit=0
 doclone=0
 doremove=0
+dorename=0
 
-while getopts "br:gn:p:" opt; do
+while getopts "bd:gc:p:ro:n:" opt; do
     case $opt in
+        # build flags
         b) dobuild=1;;
 
-        g) dogitinit=1 ;;
-
-        n) newname=$OPTARG
+        c) projectname=$OPTARG
            doclone=1;;
 
-        r) removename=$OPTARG
+        d) removename=$OPTARG
            doremove=1;;
 
-        p) projectname=$OPTARG;;
+        #rename flags
+        r) dorename=1 ;;
+
+        o) projectname=$OPTARG ;;
+
+        n) newname=$OPTARG ;;
 
         \?) # Handle invalid options
             echo "Invalid option: -$OPTARG" >&2
@@ -43,6 +46,19 @@ while getopts "br:gn:p:" opt; do
             ;;
     esac
 done
+
+if [[ dorename -eq 1 ]]; then
+    echo $projectname
+    echo $newname
+
+    cd $projectname
+    cat CMakeLists.txt | sed -i s/$projectname/$newname/g CMakeLists.txt
+    cd .var
+    echo $newname > name.data
+
+    cd ../..
+    exit 0
+fi
 
 if [[ doremove -eq 1 ]]; then
     read -p "Are you sure you want to remove $removename? (y/n): " ans
@@ -53,34 +69,28 @@ fi
 
 if [[ doclone -eq 1 ]]; then
     git clone https://github.com/Ethan-Heimer/SDL3Template
-    mv SDL3Template $newname
+    mv SDL3Template $projectname
 
-    cd $newname
+    cd $projectname
     #change project name for main CMake file
     cat CMakeLists.txt | sed -i s/SDL3CMake/"$projectname"/g CMakeLists.txt
-    cd ..
+    cd .var
+    echo $projectname > name.data
+    cd ../..
+
 fi
 
 if [[ dobuild -eq 1  ]]; then
-    cd $newname
+    cd $projectname
 
     mkdir build
-    cd build
 
-    cmake ..
-    make
+    ./build.sh
 
     cd ..
     rm -rf .git
     cd ..
 fi
-
-if [[ dogitinit -eq 1 ]]; then
-    cd $newname
-    git init
-    cd ..
-fi
-
 exit 0
 ```
 After the script is created run the following command to make it executable:\
@@ -90,39 +100,27 @@ The script should work now! You can run the script with `./YOUR_SCRIPT_NAME`
 
 ### Bash Script Flags
 
-The above script has the following flags:
+The bash script can 
+- Create new projects
+- Rename projects
+- Remove projects
 
-- `-n NEW_PROJECT_DIR_NAME`: clones the template from this git hub; renames the cloned directory to `NEW_PROJECT_DIR_NAME`
-- `-p NEW_PROJECT_EXECUTABLE_NAME`: sets the executable name. If not set the directory name will be used 
-- `-r PROJECT_NAME`: deletes `PROJECT_NAME`
+### Create New Project
+- `-c`: NEW_PROJECT_NAME: will clone template from this repo and rename it too the new project name
 - `-b`: will automatically build the new project after it has been cloned
-- `-g`: Will automatically initilize a new git repo after the template has been installed 
+
+### Delete Project 
+- `-d PROJECT_NAME`: deletes `PROJECT_NAME`
+
+### Renaming a Project
+- `-r -o PROJECT_DIR_NAME -n NEW_NAME`: Renames the project in `PROJECT_DIR_NAME` to `NEW_NAME`
+
+### Example
 
 The following command will install and build a new project, as well as initialize git:
 ```
-./YOUR_SCRIPT_NAME -n "New Project" -p "App" -b -g
+./YOUR_SCRIPT_NAME -c "New Project" -b
 ```
-
-### Manual Way
-
-If Bash isn't your style, you can do it this way:
-
-- clone and cd into repo\
-`git clone https://github.com/Ethan-Heimer/SDL3Template && cd SDL3Template`
-
-- make a build directory\
-`mkdir build && cd build`
-
-- run\
-`cmake ..`
-
-this will automatically install SDL3 and SDL3_Image into `SDL3Template/src/external/`
-if they are not found. After `cmake ..` is finished executing:
-
-- run `make`
-
-this will create a `bin` directory inside of `build` where the compiled template project
-and a copy of the assets folder from `src/project/assets` will be placed. 
 
 ## Building a project
 There are 2 ways a project can be built with this configuration.
