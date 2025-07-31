@@ -5,7 +5,84 @@ This is just a simple template top get started with SDL3 projects.
 ## Installation
 
 This has been tested with makefiles- other build systems may need extra modifications
-and steps:
+
+### Bash Script
+the following is a bash script that you can download. copy and paste it into the directory where you plan on keeping 
+your SDL3 projects.
+
+```
+#!/bin/bash
+
+dirname="New Project"
+removename=""
+projectname=$dirname
+
+dobuild=0
+dogitinit=0
+doclone=0
+doremove=0
+
+while getopts "br:gn:p:" opt; do
+    case $opt in
+        b) dobuild=1;;
+
+        g) dogitinit=1 ;;
+
+        n) newname=$OPTARG
+           doclone=1;;
+
+        r) removename=$OPTARG
+           doremove=1;;
+
+        p) projectname=$OPTARG;;
+
+        \?) # Handle invalid options
+            echo "Invalid option: -$OPTARG" >&2
+            usage
+            ;;
+    esac
+done
+
+if [[ doremove -eq 1 ]]; then
+    read -p "Are you sure you want to remove $removename? (y/n): " ans
+    if [[ $ans == "y" ]]; then
+        rm -rf $removename
+    fi
+fi
+
+if [[ doclone -eq 1 ]]; then
+    git clone https://github.com/Ethan-Heimer/SDL3Template
+    mv SDL3Template $newname
+
+    cd $newname
+    #change project name for main CMake file
+    cat CMakeLists.txt | sed -i s/SDL3CMake/"$projectname"/g CMakeLists.txt
+    cd ..
+fi
+
+if [[ dobuild -eq 1  ]]; then
+    cd $newname
+
+    mkdir build
+    cd build
+
+    cmake ..
+    make
+
+    cd ..
+    rm -rf .git
+    cd ..
+fi
+
+if [[ dogitinit -eq 1 ]]; then
+    cd $newname
+    git init
+    cd ..
+fi
+
+exit 0
+```
+
 
 - clone and cd into repo\
 `git clone https://github.com/Ethan-Heimer/SDL3Template && cd SDL3Template`
