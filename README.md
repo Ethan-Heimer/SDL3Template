@@ -124,6 +124,18 @@ if they are not found. After `cmake ..` is finished executing:
 this will create a `bin` directory inside of `build` where the compiled template project
 and a copy of the assets folder from `src/project/assets` will be placed. 
 
+## Building a project
+
+There are 2 ways a project can be built with this configuration.
+
+- `./Build.sh`
+- The manual way
+
+`./Build.sh` is a bash script that will automatically configure directories to be linked within the project. run it like a normal bash command. 
+the output by default will be built in `./build/bin/`.
+
+The manual way is outlined below
+
 ## Configuration
 ### Changing the project name 
 
