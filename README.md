@@ -19,10 +19,34 @@ and steps:
 this will automatically install SDL3 and SDL3_Image into `SDL3Template/src/external/`
 if they are not found. After `cmake ..` is finished executing:
 
-- run\
-`make`
+- run `make`
 
 this will create a `bin` directory inside of `build` where the compiled template project
 and a copy of the assets folder from `src/project/assets` will be placed. 
 
 ## Configuration
+### Changing the project name 
+
+The Default name for the template project is `SDL3CMake`. This name can be changed by 
+changing the every occurance of `SDL3CMake` to the desired name. Every CMakeLists.txt file will need this named changed to work properly\
+
+(I have not found a better way to do this yet)
+
+### Adding Extra External Libs From Github
+
+To add any libs from git hub (other SDL3 libs especially), copy this block into the 
+root `CMakeLists.txt` file:
+
+```
+FetchContent_Declare(
+    {LIB NAME HERE}
+    GIT_REPOSITORY "{LIB GITHUB URL HERE}"
+    GIT_TAG "origin/main"
+    SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/external/{LIB DIR NAME HERE}"
+)
+```
+
+and append the lib name to `FetchContent_MakeAvailable`.\
+finaly the lib should have a cmake target name associated with it. use the target name too 
+add the lib to the compiled application with\
+`target_link_libraries({PROJECT NAME} PRIVATE {LIB TARGET NAME})`
