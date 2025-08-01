@@ -1,6 +1,8 @@
 #! /bin/bash
-AppName=$(cat ./.var/name.data)
+AppName=$1
 MatchFiles="\\.(h|cpp|c)$"
+
+echo "Appname: $AppName"
 
 shopt -s globstar
 for d in ./src/project/*/; do
