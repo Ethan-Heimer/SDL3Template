@@ -1,10 +1,14 @@
 cmake_minimum_required(VERSION 3.2)
-project(SDL3CMake)
-
-cmake_policy(SET CMP0076 NEW)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 set(PROJECT_DIR "src/project") 
+set(NAME project_name)
+
+message("${ERROR_OUTPUT}")
+
+project(${NAME})
+
+cmake_policy(SET CMP0076 NEW)
 
 message("Ensuring SDL is installed")
 
@@ -27,9 +31,9 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(SDL SDLImage)
 
-add_executable(SDL3CMake) 
+add_executable(${NAME}) 
 
-target_sources(SDL3CMake PRIVATE 
+target_sources(${NAME} PRIVATE 
     ${PROJECT_DIR}/main.cpp
 )
 
@@ -39,11 +43,13 @@ target_sources(SDL3CMake PRIVATE
 
 message("Linking SDL Libs")
 
-target_link_libraries(SDL3CMake PRIVATE SDL3::SDL3)
-target_link_libraries(SDL3CMake PRIVATE SDL3_image)
+target_link_libraries(${NAME} PRIVATE SDL3::SDL3)
+target_link_libraries(${NAME} PRIVATE SDL3_image)
 
 message("Copying Assets")
 
 file(COPY "${CMAKE_SOURCE_DIR}/${PROJECT_DIR}/assets/"
     DESTINATION "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/assets/"
 )
+
+
