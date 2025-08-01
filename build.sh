@@ -12,7 +12,7 @@ cd ..
 
 #create CMakeLists.txt
 echo "Creating CMakeLists.txt..."
-cat CMakeLists.template| sed "s/project_name/${ProjectName}/g" > CMakeLists.txt
+cat ./application/CMakeLists.template| sed "s/project_name/${ProjectName}/g" > ./application/CMakeLists.txt
 
 #append directories
 echo "Appending directories to CMake file..."
@@ -25,7 +25,7 @@ echo "Generating CMakeLists.txt files in directories..."
 #start building program here
 echo "Building Program..."
 cd build
-cmake ..
+cmake ../application/
 
 #finishing build
 echo "finishing build..."
@@ -34,6 +34,6 @@ make
 #cleanup 
 echo "Cleaning Up..."
 cd ..
-rm CMakeLists.txt
+rm ./application/CMakeLists.txt
 
 

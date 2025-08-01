@@ -1,6 +1,6 @@
 #! /bin/bash
 
-CMakeFile="CMakeLists.txt"
+CMakeFile="./application/CMakeLists.txt"
 
 shopt -s globstar
 for d in ./src/project/*/; do

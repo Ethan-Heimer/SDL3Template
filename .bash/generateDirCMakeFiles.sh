@@ -5,8 +5,8 @@ MatchFiles="\\.(h|cpp|c)$"
 echo "Appname: $AppName"
 
 shopt -s globstar
-for d in ./src/project/*/; do
-    if [[ -d "$d" ]] && [[ $d != ./src/project/assets/ ]]; then
+for d in ./application/src/project/*/; do
+    if [[ -d "$d" ]] && [[ $d != ./application/src/project/assets/ ]]; then
         echo "Processing directory: $d" 
         
         cd $d
