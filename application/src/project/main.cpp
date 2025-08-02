@@ -2,7 +2,12 @@
 #include <SDL3_image/SDL_image.h>
 #include <SDL3/SDL_surface.h>
 
+#include "test/test.h"
+
 int main(int argc, char* argv[]){
+    Test test{};
+    test.Message();
+
     SDL_Window* window;
     SDL_Renderer* renderer;
     SDL_Texture* texture;

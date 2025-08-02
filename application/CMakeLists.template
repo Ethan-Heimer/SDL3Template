@@ -17,7 +17,7 @@ FetchContent_Declare(
     SDL
     GIT_REPOSITORY "https://github.com/libsdl-org/SDL"
     GIT_TAG "origin/main"
-    SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/external/SDL3"
+    SOURCE_DIR "${CMAKE_SOURCE_DIR}/src/external/SDL3"
 )
 
 message("Ensuring SDL Image is installed")
@@ -26,7 +26,7 @@ FetchContent_Declare(
     SDLImage
     GIT_REPOSITORY "https://github.com/libsdl-org/SDL_image"
     GIT_TAG "origin/main"
-    SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/external/SDL3image"
+    SOURCE_DIR "${CMAKE_SOURCE_DIR}/src/external/SDL3image"
 )
 
 FetchContent_MakeAvailable(SDL SDLImage)

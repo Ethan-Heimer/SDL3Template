@@ -16,7 +16,7 @@ cat ./application/CMakeLists.template| sed "s/project_name/${ProjectName}/g" > .
 
 #append directories
 echo "Appending directories to CMake file..."
-./.bash/appendDirsToCMakeLists.sh $ProjectName
+./.bash/appendDirsToCMakeLists.sh "./application"
 
 #generate dir CMakeFiles
 echo "Generating CMakeLists.txt files in directories..."
